@@ -11,11 +11,15 @@
   <br></br>
 
   <%@pets.each do |pet|%>
-  <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>" id="<%=pet.id%>"><%=pet.name%></input>
+  <!-- we give check box ids so when checked, it can be tracked -->
+  <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>" id="<%=pet.id%>">
+  <%=pet.name%></input>
 <%end%>
 
   <br></br>
-
+<h2> Choose Exisiting pets or create a New Pet</h2>
+  <h3>Create a Pet</h3>
+  
 <!-- CREATING A NEW OWNER AND ASSOCIATING THEM WITH A NEW PET -->
   <h3>Name: <input type="text" name="pet[name]" value="create pet"></h3>
 

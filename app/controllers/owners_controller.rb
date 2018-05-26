@@ -1,7 +1,8 @@
 class OwnersController < ApplicationController
  # All the owner and pets are loaded automaticly from our data base.
+ # you dont have to use a patch request
 
-  get '/owners' do
+  get '/owners' do   #load up all the pets
     @owners = Owner.all
     erb :'/owners/index'
   end
@@ -33,13 +34,15 @@ class OwnersController < ApplicationController
     erb :'/owners/show'
   end
 
-# this is updating
+# this is updating /// This method is just an update not create anything new.(patch)
+
   post '/owners/:id' do
     @owner = Owner.find(params[:id])
     # update effect
-    @owner.update(params["owner"])
+    @owner.update(params["owner"])   #.update is a activerecord method
 
     if !params["pet"]["name"].empty?
+      #this is what is tracking the changes.... When it updated in the edit file
       @owner.pets << Pet.create(name: params["pet"]["name"])
     end
     redirect to "owners/#{@owner.id}"
